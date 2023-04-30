@@ -2,8 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
 import Me from '../assets/Images/profile-img.png'
-
-
+import Hero from '../assets/Images/herobg.png'
+import Profile from '../assets/Images/profile.png'
+import { emma } from '../assets'
 const Box = styled(motion.div)`
 
 position: absolute;
@@ -13,7 +14,7 @@ transform: translate(-50%, -50%);
 
 
 width: 65vw;
-height:55vh;
+height: 55vh;
 display: flex;
 
 
@@ -26,19 +27,27 @@ background: linear-gradient(
     ${props => props.theme.body} 50%,
     ${props => props.theme.text} 50%) top;
     background-repeat: no-repeat;
-background-size: 100% 2px;
+/* background-size: 100% 2px; */
+background-size: 100% 3px;
     border-left: 2px solid ${props => props.theme.body};
     border-right: 2px solid ${props => props.theme.text};
+   box-shadow: 0px 10px 10px #222;
 
-
-    z-index:1;
+   z-index:1;
+   
+   
 
 `
 const SubBox = styled.div`
 width: 50%;
 position: relative;
 display: flex;
+/* height: 30px; */
 
+@media (max-width: 540px) {
+    width: 0 !important;
+    
+}
 .pic{
     position: absolute;
     bottom: 0;
@@ -46,14 +55,19 @@ display: flex;
     transform: translate(-50%,0%);
     width: 100%;
     height: auto;
+    @media(max-width: 540px) {
+        display: none;
+    }
 }
+
 `
 
 const Text = styled.div`
 font-size: calc(1em + 1.5vw);
-color: ${props => props.theme.body};
+color: #915eff;
 padding: 2rem;
 cursor: pointer;
+
 
 display: flex;
 flex-direction: column;
@@ -65,9 +79,6 @@ justify-content: space-evenly;
     font-weight:300;
 
 }
-
-
-
 `
 
 const Intro = () => {
@@ -79,9 +90,11 @@ const Intro = () => {
         >
             <SubBox>
                 <Text>
-                    <h1>Hi,</h1>
-                    <h3>I'm CodeBucks.</h3>
-                    <h6>I design and Code simple yet beautiful websites.</h6>
+                    <h2 style={{ lineHeight:  '1',  fontWeight: '900'}}>Hello, I'm<span style={{ color: '#915eff'}}> Ihekuna Emmanuel</span></h2>
+                    {/* <h3>I'm Ihekuna Emmanuel</h3> */}
+                    <p style={{ fontSize: '25px', color: '#915eff'}}><strong style={{ fontWeight: '800', color: '#915eff'}}>I'm a Front End Developer.</strong><br />
+                    Explore My World!.
+          </p>
                 </Text>
             </SubBox>
             <SubBox>

@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import img from "../assets/Images/patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg"
 import LogoComponent from '../subComponents/LogoComponent'
 import SocialIcons  from '../subComponents/SocialIcons'
 import PowerButton  from '../subComponents/PowerButton'
 
-import {Blogs} from '../data/BlogData';
+import {Blogs, projects} from '../data/BlogData';
 import BlogComponent from './BlogComponent'
 import AnchorComponent from '../subComponents/Anchor'
 import BigTitle from "../subComponents/BigTitlte"
 import { motion } from 'framer-motion'
-
-
+import design from '../assets/Images/design.png'
+import { DarkTheme } from './Themes'
 const MainContainer = styled(motion.div)`
-background-image: url(${img});
+/* background-image: url(${img}); */
 background-size: cover;
 background-repeat: no-repeat;
 background-attachment: fixed;
 background-position: center;
 `
 const Container = styled.div`
-background-color: ${props => `rgba(${props.theme.bodyRgba},0.8)`};
+background-color: rgb(5 8 22);
 width: 100%;
 height:auto;
-
+color: #fff;
 position: relative;
 padding-bottom: 5rem;
 `
@@ -37,8 +37,13 @@ padding-top: 10rem;
 
 const Grid = styled.div`
 display: grid;
+
 grid-template-columns: repeat(2, minmax(calc(10rem + 15vw), 1fr));
 grid-gap: calc(1rem + 2vw);
+@media (max-width: 700px){
+    display: flex;
+    flex-direction: column;
+}
 `
 
 // Framer-motion config
@@ -67,6 +72,8 @@ const BlogPage = () => {
 
 
     return (
+        <ThemeProvider theme={DarkTheme}>
+
         <MainContainer
         variants={container}
         initial='hidden'
@@ -76,24 +83,24 @@ const BlogPage = () => {
         }}
         >
             <Container>
-                <LogoComponent />
-                <PowerButton />
-                <SocialIcons />
-                <AnchorComponent number={numbers}/>
+                <LogoComponent theme="dark" />
+                <PowerButton theme="dark" />
+                <SocialIcons theme="dark" />
+                <AnchorComponent number={numbers} theme="dark" />
 <Center>
 <Grid>
 
-{
-    Blogs.map(blog => {
-        return <BlogComponent key={blog.id} blog={blog} />
-    })
-}
+{/* {Blogs.map(blog => { return <BlogComponent key={blog.id} blog={blog} /> })} */}
+{projects.map((project, id) => (
+    <BlogComponent key={project.id} project={project} />
+))}
 </Grid>
 
 </Center>
 <BigTitle text="BLOG" top="5rem" left="5rem" />
             </Container>
         </MainContainer>
+        </ThemeProvider>
     )
 }
 

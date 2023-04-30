@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import React from "react";
 // import { NavLink } from 'react-router-dom'
 import styled from "styled-components";
-
+import { Github } from '../components/AllSvgs';
 const Box = styled(motion.a)`
   width: calc(10rem + 15vw);
   text-decoration: none;
@@ -11,9 +11,10 @@ const Box = styled(motion.a)`
   color: ${(props) => props.theme.text};
   border: 2px solid ${(props) => props.theme.text};
   backdrop-filter: blur(2px);
-  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 10px 10px #1d1836;
+  
   cursor: pointer;
-
+  background-color: #1d1836;
   display: flex;
   flex-direction: column;
   z-index: 5;
@@ -59,6 +60,39 @@ const Date = styled.span`
   padding: 0.5rem 0;
 `;
 
+const Footer = styled.footer`
+margin-top: 12px;
+display: flex;
+justify-content: space-between;
+`
+
+const Link = styled.a`
+background-color: ${props =>props.theme.body};
+color: ${props =>props.theme.text};
+text-decoration: none;
+padding: 0.5rem 2.5rem;
+border-radius: 0 0 0 50px;
+/* font-size:calc(1em + 0.5vw); */
+font-size: 19px;
+
+${Box}:hover &{
+    background-color: ${props =>props.theme.text};
+    color: ${props =>props.theme.body};
+
+}
+`
+
+const Git = styled.a`
+color: inherit;
+text-decoration: none;
+${Box}:hover &{
+    &>*{
+        fill:${props =>props.theme.body};
+    }
+}
+
+`
+
 const Container = styled(motion.div)``;
 
 // Framer motion configuration
@@ -76,18 +110,27 @@ const Item = {
 };
 
 const BlogComponent = (props) => {
-  const { name, tags, date, imgSrc, link } = props.blog;
+  const { index, name, description, tags, image, source_code_link, live_code_link } = props.project;
+  // const { blog: { }}
   return (
     <Container variants={Item}>
-      <Box target="_blank" href={`${link}`}>
-        <Image img={imgSrc} />
+      <Box>
+        <Image img={image} />
         <Title>{name}</Title>
+        <p>{description}</p>
         <HashTags>
-          {tags.map((t, id) => {
-            return <Tag key={id}>#{t}</Tag>;
+          {tags.map((tag) => {
+            return <Tag key={`${name}-${tag.name}`}>#{tag.name}</Tag>;
           })}
         </HashTags>
-        <Date>{date}</Date>
+        <Footer>
+                <Link href={live_code_link} target="_blank">
+                    Visit
+                </Link>
+                <Git  href={source_code_link}  target="_blank">
+                    <Github width={30} height={30} />
+                </Git>
+            </Footer>
       </Box>
     </Container>
   );

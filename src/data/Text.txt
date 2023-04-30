@@ -53,6 +53,20 @@ Theme
 
 
 
+/* background: #11998e; fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    rgb(5, 2, 22),
+    rgb(5, 4, 45)
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    rgb(5, 8, 22),
+    rgb(5, 4, 45)
+  ); 
+
+
+
 
 
 

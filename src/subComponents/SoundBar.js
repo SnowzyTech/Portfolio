@@ -2,14 +2,24 @@ import React, { useRef, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
 
 import music from "../assets/audio/u-said-it-v13-1167.mp3"
-
+import music2 from '../assets/audio/Burna-Boy-Last-Last--[TrendyBeatz.com].mp3'
 const Box = styled.div`
 display:flex;
+/* flex-direction: column; */
 cursor:pointer;
 position:fixed;
-left:8rem;
-top:3rem;
+left:15rem;
+top:2.5rem;
 z-index:10;
+@media (max-width: 600px) {
+    display:flex;
+/* flex-direction: column; */
+cursor:pointer;
+position:fixed;
+left:2rem;
+top:8rem;
+z-index:10;
+}
 
 &>*:nth-child(1){
     animation-delay: 0.2s;
@@ -73,7 +83,7 @@ const SoundBar = () => {
             <Line click={click}/>
 
 
-            <audio src={music} ref={ref}  loop />
+            <audio src={music2} ref={ref}  loop />
         </Box>
     )
 }

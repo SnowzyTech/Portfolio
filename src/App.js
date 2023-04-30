@@ -11,6 +11,7 @@ import BlogPage from "./components/BlogPage";
 import WorkPage from "./components/WorkPage";
 import MySkillsPage from "./components/MySkillsPage";
 import SoundBar from "./subComponents/SoundBar";
+import ContactUs from "./components/ContactUs";
 
 function App() {
   const location = useLocation();
@@ -19,7 +20,9 @@ function App() {
       <GlobalStyle />
 
       <ThemeProvider theme={lightTheme}>
+        
         <SoundBar />
+        
 
         {/* For framer-motion animation on page change! */}
         {/* Changed prop from exitBefore to mode */}
@@ -35,6 +38,7 @@ function App() {
 
             <Route path="/blog" element={<BlogPage />} />
 
+            <Route path="/contact" element={<ContactUs />} />
             <Route path="/work" element={<WorkPage />} />
 
             <Route path="/skills" element={<MySkillsPage />} />

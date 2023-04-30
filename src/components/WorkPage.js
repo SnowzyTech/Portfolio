@@ -1,98 +1,140 @@
-import React, { useEffect, useRef } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { DarkTheme } from "./Themes";
-import { motion } from "framer-motion";
+import React from 'react'
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component'
+import 'react-vertical-timeline-component/style.min.css'
+import styled from 'styled-components'
+import { motion } from 'framer-motion'
+import { experiences } from '../data/experienceData'
+import SocialIcons from '../subComponents/SocialIcons'
+import PowerButton from '../subComponents/PowerButton'
+import LogoComponent from '../subComponents/LogoComponent'
+import { textVariant } from '../utils/motion'
+import Education from './Education'
+import BigTitle from '../subComponents/BigTitlte'
+const ExperienceCard = ({ experience }) => (
+  <VerticalTimelineElement
+    contentStyle={{ background: '#1d1836', color: '#fff'}}
+    contentArrowStyle={{ borderRight: '7px solid #232631'}}
+    date={experience.date}
+    iconStyle={{ background: experience.iconBg}}
+    icon={
+     <Contain>
+      <Image src={experience.icon} alt={experience.company_name} />
+    </Contain>
+    }
+  >
 
-import LogoComponent from "../subComponents/LogoComponent";
-import SocialIcons from "../subComponents/SocialIcons";
-import PowerButton from "../subComponents/PowerButton";
-
-import { Work } from "../data/WorkData";
-import Card from "../subComponents/Card";
-import { YinYang } from "./AllSvgs";
-import BigTitlte from "../subComponents/BigTitlte";
-
-const Box = styled.div`
-  background-color: ${(props) => props.theme.body};
-
-  height: 400vh;
-  position: relative;
-  display: flex;
-  align-items: center;
-`;
-
-const Main = styled(motion.ul)`
-  position: fixed;
-  top: 12rem;
-  left: calc(10rem + 15vw);
-  height: 40vh;
-  display: flex;
-
-  color: white;
-`;
-const Rotate = styled.span`
-  display: block;
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  width: 80px;
-  height: 80px;
-  z-index: 1;
-`;
-
-// Framer-motion Configuration
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-
-    transition: {
-      staggerChildren: 0.5,
-      duration: 0.5,
-    },
-  },
-};
-
+<Content>
+  <h3>{experience.title}</h3>
+  <Anchor href={experience.url} style={{ fontSize: '16px', fontWeight: '600', color: 'rgb(170 166 195)', margin: '0'}}>{experience.company_name}</Anchor>
+</Content>
+  
+  <UnOrderedList>
+    {experience.points.map((point, index) => (
+      <OrderedList key={`experience-point-${index}`}>
+          <Span>.</Span><Link href={experience.url}>{point}</Link>
+      </OrderedList>
+    ))}
+  </UnOrderedList>
+  </VerticalTimelineElement>
+)
 const WorkPage = () => {
-  const ref = useRef(null);
-  const yinyang = useRef(null);
-
-  useEffect(() => {
-    let element = ref.current;
-
-    const rotate = () => {
-      element.style.transform = `translateX(${-window.pageYOffset}px)`;
-
-      return (yinyang.current.style.transform =
-        "rotate(" + -window.pageYOffset + "deg)");
-    };
-
-    window.addEventListener("scroll", rotate);
-    return () => {
-      window.removeEventListener("scroll", rotate);
-    };
-  }, []);
-
   return (
-    <ThemeProvider theme={DarkTheme}>
-      <Box>
-        <LogoComponent theme="dark" />
-        <SocialIcons theme="dark" />
-        <PowerButton />
+  <>
 
-        <Main ref={ref} variants={container} initial="hidden" animate="show">
-          {Work.map((d) => (
-            <Card key={d.id} data={d} />
-          ))}
-        </Main>
-        <Rotate ref={yinyang}>
-          <YinYang width={80} height={80} fill={DarkTheme.text} />
-        </Rotate>
+  <Container>
 
-        <BigTitlte text="WORK" top="10%" right="20%" />
-      </Box>
-    </ThemeProvider>
-  );
-};
+    <LogoComponent theme='dark' />
+                <PowerButton theme="dark" />
+                <SocialIcons theme='dark' />
+                
+  <MotionSection
+  variants={textVariant()}
+  >
+    <p>What I have done so Far</p>
+    <h2>WOrk Exprience</h2>
+  </MotionSection>
+    <VerticalTimeline>
+      {experiences.map((experience, index) => (
+        <ExperienceCard key={index} experience={experience} />
+      ))}
+    </VerticalTimeline>
 
-export default WorkPage;
+    {/* <BigTitle text="CONTACT" top="5rem" left="5rem" /> */}
+  </Container>
+  <Education />
+  </>
+  )
+}
+
+const MotionSection = styled(motion.div)`
+margin-top: 4rem;
+
+p{
+  color: #fff;
+  font-size: 20px;
+}
+h2{
+  color: #fff;
+  font-size: 50px;
+}
+
+`
+const Link = styled.a`
+color: #fff;
+text-decoration: none;
+`
+const Span = styled.span`
+font-size: 4.5rem;
+color: rgb(170 166 195);
+`
+
+const Anchor = styled.a`
+text-decoration: none;
+`
+const OrderedList = styled.li`
+ color: rgb(243 243 243);
+ padding-left: 0.25rem;
+ font-size: 14px;
+ letter-spacing: 0.05em;
+ overflow: auto;
+`
+
+const Content = styled.div`
+display: flex;
+flex-direction: column;
+h3{
+  font-size: 24px;
+  color: #fff;
+  font-weight: 700;
+
+}
+`
+
+const UnOrderedList = styled.ul`
+  list-style-type: disc;
+  margin-top: 1.25rem;
+  margin-left: 0.5rem;
+  line-height: 2rem;
+
+`
+const Container = styled.div`
+ display: flex;
+ /* margin-top: 5rem; */
+ padding: 3rem;
+ flex-direction: column;
+ background-color: rgb(5 8 22);
+`
+const Image = styled.img`
+ width: 60%;
+ object-fit: contain;
+ height: 60%;
+`
+
+const Contain = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`
+export default WorkPage

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { ThemeProvider } from 'styled-components'
-import {lightTheme} from './Themes';
+import {lightTheme, DarkTheme} from './Themes';
 import { Design, Develope} from './AllSvgs';
 
 
@@ -11,13 +11,21 @@ import ParticleComponent from '../subComponents/ParticleComponent';
 import BigTitle from '../subComponents/BigTitlte'
 
 const Box = styled.div`
-background-color: ${props => props.theme.body};
+background-color: #ccc;
 width: 100vw;
 height:100vh;
 position: relative;
 display: flex;
 justify-content: space-evenly;
 align-items: center;
+@media(max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding-top: 160px;
+    height: 160vh;
+    overflow: hidden;
+}
 
 
 `
@@ -28,19 +36,24 @@ color: ${props => props.theme.text};
 background-color: ${props => props.theme.body};
 padding: 2rem;
 width: 30vw;
-height: 60vh;
+height: 80vh;
 z-index:3;
 line-height: 1.5;
 cursor: pointer;
-
 font-family: 'Ubuntu Mono',monospace;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
-
 &:hover{
     color: ${props => props.theme.body};
-    background-color: ${props => props.theme.text};
+    background-color: rgb(5 8 22);
+}
+
+@media(max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+   height: 80vh;
 }
 `
 
@@ -83,70 +96,72 @@ ul,p{
 `
 
 const MySkillsPage = () => {
+
     return (
-        <ThemeProvider theme={lightTheme}>
-<Box>
+<ThemeProvider theme={lightTheme}>
+    <Box>
+    <LogoComponent theme='light'/>
+    <SocialIcons theme='light'/>
+    <PowerButton />
+    <ParticleComponent theme='light' />
 
-<LogoComponent theme='light'/>
-<SocialIcons theme='light'/>
-<PowerButton />
-<ParticleComponent theme='light' />
-            <Main>
-<Title>
-    <Design width={40} height={40} /> Designer
-</Title>
-<Description>
-I love to create design which speaks, Keep it clean, minimal and simple.
-</Description>
-<Description>
-<strong>I like to Design</strong>
-<ul>
-    <li>
-        Web Design
-    </li>
-    <li>
-        Mobile Apps
-    </li>
-</ul>
-</Description>
-<Description>
-<strong>Tools</strong>
-<ul>
-    <li>
-       Figma
-    </li>
-    
-</ul>
-</Description>
+<Main>
+    <Title>
+        <Design width={40} height={40} /> Designer
+    </Title>
+    <Description>
+    I love to create design which speaks, Keep it clean, minimal and simple.
+    </Description>
+    <Description>
+    <strong>I like to Design</strong>
+    <ul>
+        <li>
+            Web Design With Wordpress & Elementor
+        </li>
+        <li>
+            Landing Pages
+        </li>
+    </ul>
+    </Description>
+    <Description>
+    <strong>Tools</strong>
+    <ul>
+        <li>
+        Figma, Canva
+        </li>
+        
+    </ul>
+    </Description>
 
-            </Main>
-            <Main>
-<Title>
-    <Develope width={40} height={40} /> Frontend Developer
-</Title>
-<Description>
-I value business or brand for which i'm creating, thus i enjoy bringing new ideas to life.
-</Description>
-<Description>
-<strong>Skills</strong>
-<p>
-Html, Css, Js, React, Redux, Sass, Bootstrap, Tailwind, Firebase etc.
-</p>
-</Description>
-<Description>
-<strong>Tools</strong>
-<p>
-VScode, Github, Codepen etc.
-</p>
-</Description>
+</Main>
 
-            </Main>
+<Main>
+    <Title>
+        <Develope width={40} height={40} /> Frontend Developer
+    </Title>
+    <Description>
+        I value Your Business and brand Visibility Online. <br />
+        Let's Bring your ideas and new concept to Life. 
+    </Description>
+    <Description>
+    <strong>Skills</strong>
+    <p>
+    Html, Css, Js, React, Redux, NextJs, ThreeJs, Sass, Bootstrap, Tailwind, Firebase etc.
+    </p>
+    </Description>
+    <Description>
+    <strong>Tools</strong>
+    <p>
+    VScode, Github, Codepen etc.
+    </p>
+    </Description>
 
-            <BigTitle text="SKILLS" top="80%" right="30%" />
+                </Main>
 
-        </Box>
+                <BigTitle text="SKILLS" top="80%" right="30%" />
 
-        </ThemeProvider>
+    </Box>
+</ThemeProvider>
         
     )
 }

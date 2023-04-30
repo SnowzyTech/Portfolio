@@ -7,7 +7,9 @@ import PowerButton from '../subComponents/PowerButton'
 import SocialIcons from '../subComponents/SocialIcons'
 import { YinYang } from './AllSvgs'
 import Intro from './Intro'
-;
+import Hero from '../assets/Images/herobg.png'
+import SoundBar from '../subComponents/SoundBar'
+import StarsCanvas from './StarsCanvas'
 
 
 const MainContainer = styled.div`
@@ -28,7 +30,7 @@ const Container = styled.div`
 padding: 2rem;
 `
 
-const Contact = styled.a`
+const CONTACT = styled(NavLink)`
 color: ${props => props.theme.text};
 position: absolute;
 top: 2rem;
@@ -116,16 +118,26 @@ transition: all 1s ease;
 const DarkDiv = styled.div`
 position: absolute;
 top: 0;
-background-color: #000;
+
+ box-shadow: 0px 10px 10px #222;
+ background-image: url(${Hero});
+ background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center;
+
 bottom: 0;
-right: 50%;
+/* right: 10%; */
 width: ${props => props.click ? '50%' : '0%'};
 height: ${props => props.click ? '100%' : '0%'};
-z-index:1;
+/* z-index:1; */
 transition: height 0.5s ease, width 1s ease 0.5s;
 `
 
-
+const WholeDivision = styled.div`
+ position: relative;
+ z-index: 0;
+`
 const Main = () => {
 
     const [click, setClick] = useState(false);
@@ -134,18 +146,20 @@ const Main = () => {
 
     return (
         <MainContainer>
-         <DarkDiv   click={click}/>
+         <DarkDiv className="green-text-gradient"   click={click}/>
             <Container>
             <PowerButton />
             <LogoComponent theme={click ? 'dark' :'light'}/>
             <SocialIcons theme={click ? 'dark' :'light'} />
-           
+            {/* <SoundBar /> */}
             <Center click={click}>
-                <YinYang  onClick={()=> handleClick()} width={click ? 120 : 200} height={click ? 120 : 200} fill='currentColor' />
+                <YinYang  onClick={()=> handleClick()} width={click ? 120 : 200} height={click ? 100 : 140} fill='currentColor' />
                 <span>click here</span>
             </Center>
 
-            <Contact target="_blank" href="mailto:codebucks27@gmail.com">
+<WholeDivision>
+    <StarsCanvas />
+    <CONTACT to="/contact">
                 <motion.h2
                 initial={{
                     y:-200,
@@ -159,9 +173,10 @@ const Main = () => {
                 whileTap={{scale: 0.9}}
                 
                 >
-                    Say hi..
+                    ContactMe
                 </motion.h2>
-            </Contact>
+    </CONTACT>
+</WholeDivision>
             <BLOG to="/blog">
                 <motion.h2
                 initial={{
@@ -175,7 +190,7 @@ const Main = () => {
                 whileHover={{scale: 1.1}}
                 whileTap={{scale: 0.9}}
                 >
-                    Blog
+                    My Projects
                 </motion.h2>
             </BLOG>
             <WORK to="/work" click={+click}>
@@ -191,7 +206,7 @@ const Main = () => {
                  whileHover={{scale: 1.1}}
                 whileTap={{scale: 0.9}}
                 >
-                    Work
+                    Work Experience
                 </motion.h2>
             </WORK>
             <BottomBar>

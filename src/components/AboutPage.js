@@ -11,7 +11,7 @@ import BigTitle from '../subComponents/BigTitlte'
 import astronaut from '../assets/Images/spaceman.png'
 
 const Box = styled.div`
-background-color: ${props => props.theme.body};
+background-color: rgb(16 13 37); 
 width: 100vw;
 height:100vh;
 position: relative;
@@ -53,6 +53,11 @@ const Main =  styled.div`
   top: 10rem;
   font-family: 'Ubuntu Mono', monospace;
   font-style: italic;
+  @media (max-width: 600px) {
+     height: 70%;
+     top: 5rem;
+     margin-bottom: 50px;
+  }
 `
 
 
@@ -72,11 +77,14 @@ const AboutPage = () => {
             <img src={astronaut} alt="spaceman" />
         </Spaceman>    
         <Main>
-        I'm a front-end developer located in India. I love to create simple yet beautiful websites with great user experience.
-<br /> <br/>
-I'm interested in the whole frontend stack Like trying new things and building great projects. I'm an independent freelancer and blogger. I love to write blogs and read books.
-<br/> <br/>
-I believe everything is an Art when you put your consciousness in it. You can connect with me via social links.
+        I'm a Front End Developer.
+          My expertise is to help you create responsive search engine optimized and stunning websites/apps that guarantee an absolute transform in 
+          your online presence and brand visibility. <br /><br />
+          I Also help revive your already existing website and set up a well informed online presence for your business.
+
+          <br /> <br />
+          I'm a quick leaner and collaborate closely with clients to create efficient and user-friendly solutions tha solve real-world problems
+          <br /> Let's work together to bring your ideas to life!'
         </Main>
 
         <BigTitle text="ABOUT" top="10%" left="5%" />
