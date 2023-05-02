@@ -81,7 +81,7 @@ ${Box}:hover &{
 
 `
 
-// Framer motion configuration
+// Framermotion configuration
 const Item = {
     hidden:{
         scale:0
