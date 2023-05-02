@@ -2,19 +2,21 @@ import React from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 import {lightTheme, DarkTheme} from './Themes';
 import { Design, Develope} from './AllSvgs';
-
+import { slideIn } from '../utils/motion';
 
 import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
 import PowerButton from '../subComponents/PowerButton';
 import ParticleComponent from '../subComponents/ParticleComponent';
 import BigTitle from '../subComponents/BigTitlte'
+import { motion } from 'framer-motion'
 
 const Box = styled.div`
 background-color: #ccc;
 width: 100vw;
 height:100vh;
 position: relative;
+padding-top: 50px;
 display: flex;
 justify-content: space-evenly;
 align-items: center;
@@ -30,7 +32,7 @@ align-items: center;
 
 `
 
-const Main = styled.div`
+const Main = styled(motion.div)`
 border: 2px solid ${props => props.theme.text};
 color: ${props => props.theme.text};
 background-color: ${props => props.theme.body};
@@ -105,7 +107,11 @@ const MySkillsPage = () => {
     <PowerButton />
     <ParticleComponent theme='light' />
 
-<Main>
+<Main 
+variants={slideIn('left', 'tween', 0.2, 1)} 
+animate="show"
+initial='hidden'
+>
     <Title>
         <Design width={40} height={40} /> Designer
     </Title>
@@ -135,7 +141,11 @@ const MySkillsPage = () => {
 
 </Main>
 
-<Main>
+<Main 
+variants={slideIn('right', 'tween', 0.2, 1)}
+animate="show"
+initial="hidden"
+>
     <Title>
         <Develope width={40} height={40} /> Frontend Developer
     </Title>

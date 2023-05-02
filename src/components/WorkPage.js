@@ -49,6 +49,8 @@ const WorkPage = () => {
                 
   <MotionSection
   variants={textVariant()}
+  animate="show"
+  initial="hidden"
   >
     <p>What I have done so Far</p>
     <h2>WOrk Exprience</h2>

@@ -76,6 +76,8 @@ const ContactUs = () => {
                 <SocialIcons theme='dark' />
                 {/* <ParticleComponent theme='dark' /> */}
       <motion.div 
+       initial='hidden'
+       animate='show'
        variants={slideIn('left', 'tween', 0.2, 1)}
        className=""
        style={{ flex: '0.78', borderRadius: '30px'}}
@@ -140,7 +142,7 @@ const ContactUs = () => {
       </motion.div>
       {/* <StarsCanvas /> */}
      
-        <CoverBody>
+        <CoverBody variants={slideIn('right', 'tween', 0.2, 1)}>
 
         <EarthCanvas />
         </CoverBody>

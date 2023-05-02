@@ -36,13 +36,32 @@ background-size: 100% 3px;
    z-index:1;
    
    
+@media (max-width: 400px) {
+    background: linear-gradient(
+    to right,
+    ${props => props.theme.body} 50%,
+    ${props => props.theme.text} 50%) bottom,
+    linear-gradient(
+    to right,
+    ${props => props.theme.body} 50%,
+    ${props => props.theme.text} 50%) top;
+    background-repeat: no-repeat;
+/* background-size: 100% 2px; */
+background-size: 100% 3px;
+    border-left: 2px solid ${props => props.theme.body};
+    border-right: 2px solid ${props => props.theme.text};
+   box-shadow: 0px 10px 10px #222;
 
+   z-index:1;
+   
+}
 `
 const SubBox = styled.div`
 width: 50%;
 position: relative;
 display: flex;
 /* height: 30px; */
+
 
 @media (max-width: 540px) {
     width: 0 !important;
@@ -56,7 +75,7 @@ display: flex;
     width: 100%;
     height: auto;
     @media(max-width: 540px) {
-        display: none;
+        /* display: none; */
     }
 }
 
@@ -67,6 +86,9 @@ font-size: calc(1em + 1.5vw);
 color: #915eff;
 padding: 2rem;
 cursor: pointer;
+@media (max-width:294px) {
+    padding-left: 10px
+}
 
 
 display: flex;

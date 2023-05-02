@@ -37,15 +37,24 @@ top: 2rem;
 right: calc(1rem + 2vw);
 text-decoration: none;
 z-index:1;
+@media (max-width:505px) {
+    right: 2px;
+    color: ${props => props.click ? props.theme.body : props.theme.text};
+}
+
 `
 const BLOG = styled(NavLink)`
 color: ${props => props.theme.text};
 position: absolute;
 top: 50%;
-right: calc(1rem + 2vw);
+right: 0.5rem;
 transform: rotate(90deg) translate(-50%, -50%);
 text-decoration: none;
 z-index:1;
+@media (max-width:505px) {
+    right: -2rem;
+    color: ${props => props.click ? props.theme.body : props.theme.text};
+}
 `
 const WORK = styled(NavLink)`
 color: ${props => props.click ? props.theme.body : props.theme.text};
@@ -73,11 +82,17 @@ const ABOUT = styled(NavLink)`
 color: ${props => props.click ? props.theme.body : props.theme.text};
 text-decoration: none;
 z-index:1;
+
+@media (max-width: 470px) {
+    color: #000;
+}
 `
 const SKILLS = styled(NavLink)`
 color: ${props => props.theme.text};
 text-decoration: none;
 z-index:1;
+
+
 `
 
 const rotate = keyframes`
@@ -130,8 +145,13 @@ bottom: 0;
 /* right: 10%; */
 width: ${props => props.click ? '50%' : '0%'};
 height: ${props => props.click ? '100%' : '0%'};
-/* z-index:1; */
+z-index:1;
 transition: height 0.5s ease, width 1s ease 0.5s;
+
+@media(max-width: 470px) {
+    width: ${props => props.click ? '100%' : '0%'};
+height: ${props => props.click ? '70%' : '0%'};
+}
 `
 
 const WholeDivision = styled.div`
@@ -157,9 +177,9 @@ const Main = () => {
                 <span>click here</span>
             </Center>
 
-<WholeDivision>
-    <StarsCanvas />
-    <CONTACT to="/contact">
+{/* <WholeDivision> */}
+
+    <CONTACT to="/contact" click={+click}>
                 <motion.h2
                 initial={{
                     y:-200,
@@ -176,8 +196,8 @@ const Main = () => {
                     ContactMe
                 </motion.h2>
     </CONTACT>
-</WholeDivision>
-            <BLOG to="/blog">
+{/* </WholeDivision> */}
+            <BLOG to="/blog" click={+click}>
                 <motion.h2
                 initial={{
                     y:-200,

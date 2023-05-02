@@ -39,6 +39,8 @@ const Education = () => {
                       <SocialIcons theme='dark' />
         <MotionSection
         variants={textVariant()}
+        animate="show"
+        initial="hidden"
         >
           
           <h2>Education</h2>
@@ -54,13 +56,10 @@ const Education = () => {
 }
 
 
-const MotionSection = styled(motion.div)`
+const MotionSection = styled(motion.h2)`
 margin-top: 4rem;
 
-p{
-  color: #fff;
-  font-size: 20px;
-}
+
 h2{
   color: #fff;
   font-size: 50px;

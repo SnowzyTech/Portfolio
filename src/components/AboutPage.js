@@ -2,14 +2,14 @@ import React from 'react'
 import styled, { keyframes, ThemeProvider } from 'styled-components'
 import {DarkTheme} from './Themes';
 
-
+import { motion } from 'framer-motion';
 import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
 import PowerButton from '../subComponents/PowerButton';
 import ParticleComponent from '../subComponents/ParticleComponent';
 import BigTitle from '../subComponents/BigTitlte'
 import astronaut from '../assets/Images/spaceman.png'
-
+import { slideIn } from '../utils/motion';
 const Box = styled.div`
 background-color: rgb(16 13 37); 
 width: 100vw;
@@ -34,7 +34,7 @@ img{
     height: auto;
 }
 `
-const Main =  styled.div`
+const Main =  styled(motion.div)`
   border: 2px solid ${(props) => props.theme.text};
   color: ${(props) => props.theme.text};
   padding: 2rem;
@@ -68,6 +68,8 @@ const AboutPage = () => {
         <ThemeProvider theme={DarkTheme}>
 <Box>
 
+
+
 <LogoComponent theme='dark'/>
 <SocialIcons theme='dark'/>
 <PowerButton />
@@ -76,15 +78,21 @@ const AboutPage = () => {
         <Spaceman>
             <img src={astronaut} alt="spaceman" />
         </Spaceman>    
-        <Main>
+      <Main 
+      variants={slideIn('left', 'tween', 0.2, 1)}
+      initial='hidden'
+        animate='show'
+      >
+      
         I'm a Front End Developer.
           My expertise is to help you create responsive search engine optimized and stunning websites/apps that guarantee an absolute transform in 
           your online presence and brand visibility. <br /><br />
           I Also help revive your already existing website and set up a well informed online presence for your business.
 
           <br /> <br />
-          I'm a quick leaner and collaborate closely with clients to create efficient and user-friendly solutions tha solve real-world problems
+          I'm a quick leaner and collaborate closely with clients to create efficient and user-friendly solutions that solve real-world problems
           <br /> Let's work together to bring your ideas to life!'
+       
         </Main>
 
         <BigTitle text="ABOUT" top="10%" left="5%" />
