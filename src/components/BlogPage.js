@@ -97,7 +97,7 @@ const BlogPage = () => {
 </Grid>
 
 </Center>
-<BigTitle text="BLOG" top="5rem" left="5rem" />
+<BigTitle text="My Projects" top="5rem" left="5rem" />
             </Container>
         </MainContainer>
         </ThemeProvider>

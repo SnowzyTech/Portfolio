@@ -82,7 +82,7 @@ const ContactUs = () => {
        className=""
        style={{ flex: '0.78', borderRadius: '30px'}}
       >
-    <StarsCanvas />
+   
         <Head>
 
         <p>SEND ME AN EMAIL I'M VERY RESPONSIVE TO MESSAGES!</p>
@@ -169,7 +169,7 @@ const TextContainer = styled.div`
 const CoverBody = styled.div`
 height: 550px;
 
-@media (max-width: 700px) {
+@media (max-width: 790px) {
   height: 350px;
 }
 @media (min-width: 1280px) {
@@ -201,9 +201,12 @@ const Container = styled.div`
  height: 100vh;
  gap: 2.5rem;
  padding: 3rem;
+
  background-color: rgb(16 13 37);
  @media (max-width: 680px) {
-    flex-direction: column-reverse
+    flex-direction: column-reverse;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
  `
 
