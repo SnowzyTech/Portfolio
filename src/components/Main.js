@@ -13,7 +13,24 @@ import StarsCanvas from './StarsCanvas'
 
 
 const MainContainer = styled.div`
-background: ${props => props.theme.body};
+
+    /* ff 3.6+ */
+    background:-moz-linear-gradient(8deg, rgba(210, 210, 202, 1) 0%, rgba(255, 249, 255, 1) 100%); 
+
+    /* safari 5.1+,chrome 10+ */
+    background:-webkit-linear-gradient(8deg, rgba(210, 210, 202, 1) 0%, rgba(255, 249, 255, 1) 100%);
+
+    /* opera 11.10+ */
+    background:-o-linear-gradient(8deg, rgba(210, 210, 202, 1) 0%, rgba(255, 249, 255, 1) 100%);
+
+    /* ie 6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#D2D2CA', endColorstr='#FFF9FF', GradientType=1 );
+
+    /* ie 10+ */
+    background:-ms-linear-gradient(8deg, rgba(210, 210, 202, 1) 0%, rgba(255, 249, 255, 1) 100%);
+
+    /* global 94%+ browsers support */
+    background:linear-gradient(8deg, rgba(210, 210, 202, 1) 0%, rgba(255, 249, 255, 1) 100%);
 width: 100vw;
 height: 100vh;
 overflow:hidden;
